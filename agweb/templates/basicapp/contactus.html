@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+  <section>
+    <div class="container extended content full-width">
+      <hr>
+        <!--
+        get:        Default. Appends the form-data to the URL in name/value pairs: URL?name=value&name=value
+        post:       Sends the form-data as an HTTP post transaction
+        -->
+        <form action="" method="POST">
+           <!--Cross Site Request Forgery protection-->
+        <h3>Send us a Message</h3>
+        {% csrf_token %}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+                {{ field.errors }}
+                <label>{{ field.label_tag }}</label>
+                <p>{{ field }}</p>
+            </div>
+        {% endfor %}
+        <button type="reset" class="btn btn-secondary">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif  %}
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+               <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+            </ul>
+      {% endif %}
+
+        </form>    
+    </div>
+  </section><!-- End Hero -->
+
+{% endblock content %}
+

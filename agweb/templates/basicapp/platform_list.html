@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+
+{#{% load staticfiles %} and {% load admin_static %} were deprecated in Django 2.1, and removed in Django 3.0. #}
+{% load static %}
+
+
+{% block content %}
+    <section>
+        <div class="container extended content full-width ">
+            <hr>
+            {% for platform in object_list %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>&nbsp;</p>
+                        <p><img loading="lazy" class="mx-auto d-block" src="{{ platform.image.url }}"></p>
+                    </div>
+                        <div class="col-sm-6">
+                            <!--h2 id="autoheading-0">{{ platform.name }}</h2-->
+                            <h2>{{ platform.name }}</h2>
+                            <p>{{ platform.content|safe }}</p>
+                        </div>
+                    </div>
+                    <hr>
+               {% empty %}
+                   <li>No Platform yet.</li>
+               {% endfor %}
+        </div>
+    </section><!-- End Hero -->
+{% endblock content %}
+

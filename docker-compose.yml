@@ -1,0 +1,27 @@
+version: '3'
+volumes:
+  pgdata: 
+services:
+  python:
+    #image: python:3.4
+    build:
+        context: .
+        dockerfile: docker/python/Dockerfile
+    volumes: 
+      - ./agweb/:/app
+    ports:
+      - 8123:8123
+    #command: sleep infinity
+    #command: cd /app && python manage.py runserver 0.0.0.0:8123
+    command: cd /app && gunicorn --bind 0.0.0.0:8123 agweb.wsgi 
+    #command: "python manage.py runserver 0.0.0.0:8123"
+#  postgres:
+#    image: postgres:9.6
+#    environment:
+#      POSTGRES_USER: xie186
+#      POSTGRES_DB: omblog
+#      POSTGRES_PASS: Xie2018
+#    volumes:
+#      - pgdata:/var/lib/posgresql/data
+#    ports:
+#      - 5432:5432

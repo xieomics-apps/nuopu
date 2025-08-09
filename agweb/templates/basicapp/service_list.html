@@ -1,0 +1,9 @@
+
+<h1>Services</h1>
+<ul>
+{% for service in object_list %}
+    <li>{{ service.publish|date }} - {{ service.title }}</li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>

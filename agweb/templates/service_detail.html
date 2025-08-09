@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+
+{#{% load staticfiles %} and {% load admin_static %} were deprecated in Django 2.1, and removed in Django 3.0. #}
+{% load static %}
+
+
+{% block content %}
+     
+    <section id="section">
+        <div class="container extended content full-width ">
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                  <h5>服务概览</h5>
+                  <div class="btn-group-vertical">
+                  {% for each_category, sers in category.items %}
+                    <button type="button" class="btn btn-info btn-space text-left" data-toggle="collapse" data-target="#category{{ each_category.id }}"><a>{{ each_category }}</a></button>
+                    {% for ser in sers %}
+                        <div id="category{{ each_category.id }}" class="collapse">
+                            <li><a href="{% url 'service-detail' ser.id %}">{{ ser }}</a></li>
+                        </div>
+                    {% endfor %}
+                  {% endfor %}
+                  </div>
+                </div>
+                <div class="col-sm-9">
+                   <h4>{{ object.title }}</h4>
+                   <p>{{ object.body|safe }}</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero -->
+{% endblock content %}
+

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <div class="container extended content full-width">
+        <div class="container mt-5">
+            <h2>联系我们</h2>
+            <ul class="list-group mt-4">
+                <li class="list-group-item"><strong>手机：</strong> {{ contact_info.手机 }}</li>
+                <li class="list-group-item"><strong>微信：</strong> {{ contact_info.微信 }}</li>
+                <li class="list-group-item"><strong>邮箱：</strong> {{ contact_info.邮箱 }}</li>
+                <li class="list-group-item"><strong>地址：</strong> {{ contact_info.地址 }}</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

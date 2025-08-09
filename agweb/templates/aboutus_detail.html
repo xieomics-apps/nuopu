@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+
+{#{% load staticfiles %} and {% load admin_static %} were deprecated in Django 2.1, and removed in Django 3.0. #}
+{% load static %}
+
+
+{% block content %}
+     
+    <section id="section">
+        <div class="container extended content full-width ">
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-9">
+                   <h2>{{ object.title }}</h2>
+                   <p>{{ object.body|safe }}</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero -->
+{% endblock content %}
+

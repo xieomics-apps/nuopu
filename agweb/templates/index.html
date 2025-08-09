@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+
+{#{% load staticfiles %} and {% load admin_static %} were deprecated in Django 2.1, and removed in Django 3.0. #}
+{% load static %}
+
+
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">{{ sitesetting.h1|default:sitesetting.title }}</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">{{ sitesetting.h2 }}</h2>
+          <div data-aos="fade-up" data-aos-delay="800">
+            <!--a href="#about" class="btn-get-started scrollto">Get Started</a-->
+            <a href="{% url "contact-us" %}" class="btn btn-grad btn--dark btn--rounded btn--w-icon">
+                  联系我们
+                   <i class="fa fa-envelope" aria-hidden="true"></i>
+            </a>
+            <!-- <a href="https://github.com/agilisgenomics" class="btn btn--dark btn--rounded btn--w-icon">
+                   Open Source
+                  <i class="fab fa-github" ></i>
+            </a> -->
+
+
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
+          <!--img src="{% static 'assets/img/hero-img.png' %}" class="img-fluid animated" alt=""-->
+          <!--img src="{% static 'assets/img/cell_dna.jpg' %}" class="img-fluid animated" alt=""-->
+          <!-- https://www.vecteezy.com/vector-art/447156-deoxyribonucleic-acid -->
+          <img id="home-image" src="{% static 'assets/img/dna.jpg' %}" class="img-fluid animated" alt="">
+          <!--img src="{% static 'assets/img/dna-gray.png' %}" class="img-fluid animated" alt=""-->
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+{% endblock content %}
+
