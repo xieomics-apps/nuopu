@@ -2,7 +2,17 @@ from django.contrib import admin
 from basicapp.models import (Platform, Post, 
                              Service, Category, 
                              Aboutus, SiteSetting, 
-                             ContactInfo)
+                             ContactInfo, TechCenter, TechCenterCategory)
+class TechCenterAdmin(admin.ModelAdmin):
+    model = TechCenter
+    list_display = ('title', 'category', 'publish', 'status', 'updated')
+
+class TechCenterCategoryAdmin(admin.ModelAdmin):
+    model = TechCenterCategory
+    list_display = ('title', 'slug')
+
+admin.site.register(TechCenter, TechCenterAdmin)
+admin.site.register(TechCenterCategory, TechCenterCategoryAdmin)
 # Register your models here.
 
 admin.site.register(Platform)

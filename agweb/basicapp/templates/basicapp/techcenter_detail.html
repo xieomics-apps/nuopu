@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ techcenter.title }}</h2>
+    <div class="mb-2 text-muted">类别：{{ techcenter.category }} | 发布时间：{{ techcenter.publish|date:"Y-m-d H:i" }}</div>
+    <div class="content">
+        {{ techcenter.body|safe }}
+    </div>
+    <a href="{% url 'techcenter-list' %}" class="btn btn-secondary mt-3">返回列表</a>
+</div>
+{% endblock %}

@@ -28,9 +28,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{{ site_title }} – Deliver High Quality and Agile High Throughtput Sequencing Serivce, Bioinformatics Service and More... </title>
-  <meta content="We, Agilis Genomics, Deliver High Quality and Agile High Throughtput Sequencing Serivce, Bioinformatics Service." name="descriptison">
-  <meta name="keywords" content="Agilis Genomics, Genomics, Agilis, NGS, Sequencing, Bioinformatics, Biology, RNA-seq, ChIP-seq, BS-seq, WGBS, Ribosome profiling, small RNA">
+  <title>{{ site_title }}</title>
+  <meta content="" name="descriptison">
+  <meta name="keywords" content="{{ site_title }}">
 
   <!-- Favicons -->
   <!--link href="{% static 'assets/img/favicon.png' %}" rel="icon"-->
@@ -89,11 +89,12 @@
                  {% endfor  %}
              </ul> 
           </li>
-          <li class="{{ nav_status_platform }}"><a href="{% url 'platform-list' %}">服务平台</a></li>
+          <li class="{{ nav_status_techcenter }}"><a href="{% url 'techcenter-list' %}">技术中心</a></li>
+
+          <!-- <li class="{{ nav_status_platform }}"><a href="{% url 'platform-list' %}">服务平台</a></li> -->
           {% if aboutus_obj %}
               <li class="{{ nav_status_aboutus }}"><a href="/aboutus/1">关于我们</a></li>
           {% endif %}
-          <!-- <li class="{{ nav_status_contactus }}"><a href="{% url 'contact-us' %}">联系我们</a></li> -->
           <li class="{{ nav_status_contactus2 }}"><a href="{% url 'contact-us2' %}">联系我们</a></li>
         </ul>
       </nav><!-- .nav-menu -->

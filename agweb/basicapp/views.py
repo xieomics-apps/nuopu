@@ -1,3 +1,7 @@
+from basicapp.models import TechCenter, TechCenterCategory
+# 技术中心列表视图
+from django.shortcuts import get_object_or_404
+
 # 新的联系信息页面视图
 from django.views.generic import TemplateView
 
@@ -132,3 +136,32 @@ class ContactInfoView(TemplateView):
             # 可根据需要添加更多信息
         }
         return context
+    
+class TechCenterListView(TemplateView):
+    template_name = 'basicapp/techcenter_list.html'
+
+    def get(self, request, category_id=None, *args, **kwargs):
+        categories = TechCenterCategory.objects.all()
+        if category_id:
+            techcenters = TechCenter.objects.filter(category_id=category_id, status='published').order_by('-publish')
+            current_category_id = int(category_id)
+        else:
+            techcenters = TechCenter.objects.filter(status='published').order_by('-publish')
+            current_category_id = None
+        return render(request, self.template_name, {
+            'categories': categories,
+            'techcenters': techcenters,
+            'current_category_id': current_category_id,
+            'nav_status_techcenter': 'active',
+        })
+
+# 技术中心详情视图
+class TechCenterDetailView(TemplateView):
+    template_name = 'basicapp/techcenter_detail.html'
+
+    def get(self, request, pk, *args, **kwargs):
+        techcenter = get_object_or_404(TechCenter, pk=pk, status='published')
+        return render(request, self.template_name, {
+            'techcenter': techcenter,
+            'nav_status_techcenter': 'active',
+        })

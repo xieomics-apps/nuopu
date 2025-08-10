@@ -142,3 +142,42 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return f"手机: {self.phone} / 微信: {self.wechat}"
+    
+# 技术中心类别
+class TechCenterCategory(models.Model):
+    title = models.CharField(max_length=250, verbose_name="技术中心类别")
+    slug = models.SlugField(max_length=250, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "技术中心类别"
+        verbose_name_plural = "技术中心类别"
+
+# 技术中心内容
+class TechCenter(models.Model):
+    STATUS_CHOICES = (
+       ('draft', 'Draft'),
+       ('published', 'Published'),
+    )
+    title = models.CharField(max_length=250, verbose_name="标题")
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    category = models.ForeignKey(TechCenterCategory, null=True, blank=True, on_delete=models.CASCADE, verbose_name="类别")
+    body = HTMLField(blank=True, verbose_name="内容")
+    publish = models.DateTimeField(default=timezone.now, verbose_name="发布时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    updated = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', verbose_name="状态")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "技术中心"
+        verbose_name_plural = "技术中心"
