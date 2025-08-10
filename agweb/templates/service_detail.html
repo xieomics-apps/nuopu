@@ -16,7 +16,11 @@
                   <h5>服务概览</h5>
                   <div class="btn-group-vertical">
                   {% for each_category, sers in category.items %}
-                    <button type="button" class="btn btn-info btn-space text-left" data-toggle="collapse" data-target="#category{{ each_category.id }}"><a>{{ each_category }}</a></button>
+                    <button type="button" class="btn btn-outline-primary btn-lg mb-2 text-left w-100" data-toggle="collapse" data-target="#category{{ each_category.id }}">
+                      <span class="d-flex align-items-center">
+                        <i class="fas fa-folder-open mr-2"></i> {{ each_category }}
+                      </span>
+                    </button>
                     {% for ser in sers %}
                         <div id="category{{ each_category.id }}" class="collapse">
                             <li><a href="{% url 'service-detail' ser.id %}">{{ ser }}</a></li>
