@@ -13,17 +13,17 @@
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                  <h5>服务概览</h5>
+                  <h6 style="font-size: 1rem;">服务概览</h6>
                   <div class="btn-group-vertical">
                   {% for each_category, sers in category.items %}
-                    <button type="button" class="btn btn-outline-primary btn-lg mb-2 text-left w-100" data-toggle="collapse" data-target="#category{{ each_category.id }}">
+                    <button type="button" class="btn btn-outline-primary btn-sm mb-2 text-left w-100" data-toggle="collapse" data-target="#category{{ each_category.id }}">
                       <span class="d-flex align-items-center">
                         <i class="fas fa-folder-open mr-2"></i> {{ each_category }}
                       </span>
                     </button>
                     {% for ser in sers %}
                         <div id="category{{ each_category.id }}" class="collapse">
-                            <li><a href="{% url 'service-detail' ser.id %}">{{ ser }}</a></li>
+                            <li><a href="{% url 'service-detail' ser.id %}" style="font-size: 0.9rem;">{{ ser }}</a></li>
                         </div>
                     {% endfor %}
                   {% endfor %}
