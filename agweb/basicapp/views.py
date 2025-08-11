@@ -128,13 +128,9 @@ class ContactInfoView(TemplateView):
     template_name = 'basicapp/contact_info.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contact_info'] = {
-            '手机': '138-0000-0000',
-            '微信': 'your_wechat_id',
-            '邮箱': 'your@email.com',
-            '地址': '中国某地',
-            # 可根据需要添加更多信息
-        }
+        from basicapp.models import ContactInfo
+        contact_info = ContactInfo.objects.first()
+        context['contact_info'] = contact_info
         return context
     
 class TechCenterListView(TemplateView):
